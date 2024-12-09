@@ -10,36 +10,28 @@ import java.util.ArrayList;
 
 public class AreaCheckServlet extends HttpServlet {
     AreaChecker areaChecker = new AreaChecker();
-    Gson gson = new Gson();
 
-    ArrayList<Dot> dots = new ArrayList<>();
-    Dot dot;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int x = (int) request.getAttribute("x");
+        double y = (double) request.getAttribute("y");
+        double r = (double) request.getAttribute("r");
+
+        Dot dot = new Dot(x,y,r);
         try {
-            long start = System.nanoTime();
-            int x = Integer.parseInt(request.getParameter("x"));
-            double y = Double.parseDouble(request.getParameter("y"));
-            double r = Double.parseDouble(request.getParameter("r"));
-            dot = new Dot(x, y, r);
             dot.setStatus(areaChecker.isInTheSpot(dot));
-            dots = (ArrayList<Dot>) request.getSession().getAttribute("dots");
-            if (dots == null) {
-                dots = new ArrayList<>();
-                request.getSession().setAttribute("dots", dots);
-            }
-            dots.add(dot);
-            response.setStatus(HttpServletResponse.SC_OK);
-            String res = String.format(gson.toJson(dot));
-            response.getWriter().write(res);
-            System.out.println("Response JSON: " + res);
-        }
-        catch (IllegalParameterException e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            String answer = "{ error: " + e.getMessage() + "}";
-            response.getWriter().write(answer);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        String resp = String.format("{\"x\":%d,\"y\":%.2f,\"r\":%.2f,\"status\":\"%s\"}",
+                dot.getX(), dot.getY(), dot.getR(), dot.getStatus());
+
+        response.getWriter().write(resp);
+
+
+
     }
 }

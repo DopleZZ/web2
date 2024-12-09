@@ -3,23 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
-<servlet>
-    <servlet-name>HelloServlet</servlet-name>
-    <servlet-class>project.demo.ControllerServlet</servlet-class>
-</servlet>
+
 
     <servlet>
-        <servlet-name>areacheck</servlet-name>
+        <servlet-name>controller</servlet-name>
         <servlet-class>project.demo.ControllerServlet</servlet-class>
     </servlet>
+    
     <servlet-mapping>
-        <servlet-name>HelloServlet</servlet-name>
-        <url-pattern>/hello-servlet</url-pattern>
+        <servlet-name>controller</servlet-name>
+        <url-pattern>/controller</url-pattern>
     </servlet-mapping>
-
+    
+    <servlet>
+        <servlet-name>areacheck</servlet-name>
+        <servlet-class>project.demo.AreaCheckServlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>areacheck</servlet-name>
-        <url-pattern>areacheck</url-pattern>
+        <url-pattern>/areacheck</url-pattern>
     </servlet-mapping>
 
     <filter-mapping>
