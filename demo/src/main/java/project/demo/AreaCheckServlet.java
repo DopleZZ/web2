@@ -6,10 +6,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class AreaCheckServlet extends HttpServlet {
     AreaChecker areaChecker = new AreaChecker();
+    ArrayList<Dot> dots = new ArrayList<>();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -23,6 +25,15 @@ public class AreaCheckServlet extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+
+        dots = (ArrayList<Dot>) request.getSession().getAttribute("dots");
+        if (dots == null) {
+            dots = new ArrayList<>();
+            request.getSession().setAttribute("dots", dots);
+        }
+        dots.add(dot);
+
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

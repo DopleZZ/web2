@@ -20,7 +20,7 @@ public class Parser {
         }
         try {
             RequestBody body = new RequestBody(
-                    Integer.parseInt(elements[0]),
+                    (int) Double.parseDouble(elements[0]),
                     Double.parseDouble(elements[1]),
                     Double.parseDouble(elements[2]));
             return body;

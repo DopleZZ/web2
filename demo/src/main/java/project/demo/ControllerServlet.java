@@ -22,8 +22,8 @@ public class ControllerServlet extends HttpServlet {
         System.out.println(body.getR());
 
 
-        if (body.getX() == 0 &
-                body.getY() == 0 &
+        if (body.getX() == 0 &&
+                body.getY() == 0 &&
                 body.getR() == 0) {
             System.out.println("1111");
             request.getRequestDispatcher("index.jsp").forward(request, response);

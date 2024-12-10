@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-    <title>Лабораторная</title>
+    <title>Лабораторная Бондаренко Р3210</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
@@ -59,12 +59,11 @@
                     <option value="2.5">2.5</option>
                     <option value="2">2</option>
                     <option value="1.5">1.5</option>
-                    <option value="1">1</option>
-                    <option value="0" selected>0</option>
+                    <option value="1" selected>1</option>
+                    <option value="0">0</option>
                 </select>
             </div>
             <div class="warning">
-                <p>Внимание: При изменении координат точки на графике, значения в полях выбора не меняются!</p>
                 <p>При нажатии кнопки "рассчитать" берутся текущие значения (слева внизу).</p>
             </div>
             <div class="bottomline">
@@ -90,10 +89,10 @@
                             for (Dot dot : dots) {
                     %>
                             <tr>
+                                <td><%= dot.getStatus() ? "Попадание" : "Промах"%></td>
                                 <td><%= String.valueOf(dot.getX())%></td>
                                 <td><%= String.valueOf(dot.getY())%></td>
                                 <td><%= String.valueOf(dot.getR())%></td>
-                                <td><%= dot.getStatus() ? "Попадание" : "Промах"%></td>
                             </tr>
                    <%
                             }

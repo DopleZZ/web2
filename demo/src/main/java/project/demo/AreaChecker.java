@@ -3,21 +3,21 @@ package project.demo;
 public class AreaChecker {
 
     private boolean isTriangle(Dot dot) {
-        var equation = -dot.getR()/2*dot.getX() - dot.getR()/2;
-
-        if (dot.getY() < 0 || dot.getX() < 0 || dot.getY() > equation){
+        var equation = -dot.getR() / 2 * dot.getX() - dot.getR() / 2;
+        if (dot.getY() < 0 || dot.getX() < 0 || dot.getY() > equation) {
             return false;
         }
         return true;
     }
 
 
+
     private boolean isCircle(Dot dot) {
-        return dot.getX() * (dot.getR()/2) >= 0 && dot.getY() * (dot.getR()/2) >= 0 && Math.sqrt(dot.getX() * dot.getX() + dot.getY() * dot.getY()) <= (dot.getR()/2);
+        return ( dot.getY() <=0 && dot.getX() >= 0 && Math.sqrt(dot.getY() * dot.getY() + dot.getX() * dot.getX()) <= dot.getR()/2);
     }
 
     private boolean isRectangle(Dot dot) {
-        return dot.getX() * dot.getR() <= 0 && dot.getY() * dot.getR() >= 0 && dot.getY() <= dot.getR() && dot.getX() >= dot.getR();
+        return (dot.getY() <= 0 && dot.getX() <=0 && dot.getX() >= -dot.getR() && dot.getY() >= -dot.getR()/2);
     }
 
     public boolean isInTheSpot(Dot dot) throws Exception {
