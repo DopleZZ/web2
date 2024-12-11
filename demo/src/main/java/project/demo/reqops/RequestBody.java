@@ -2,17 +2,19 @@ package project.demo.reqops;
 
 public class RequestBody {
 
-    private int x;
+    private double x;
     private double y;
     private double r;
+    private String svg;
 
-    public RequestBody(int x, double y, double r){
+    public RequestBody(double x, double y, double r, String svg){
         this.x = x;
         this.y = y;
         this.r = r;
+        this.svg = svg;
     }
 
-    public int getX(){
+    public double getX(){
         return this.x;
     }
 
@@ -35,4 +37,8 @@ public class RequestBody {
     public void setR(double r){
         this.r=r;
     }
+
+    public void setSVG(String svg){ this.svg = svg;}
+
+    public String getSVG(){ return this.svg;}
 }

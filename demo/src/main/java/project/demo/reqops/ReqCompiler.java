@@ -20,7 +20,7 @@ public class ReqCompiler {
 
             return parser.getParams(jsonBuffer.toString());
         } catch (Exception e) {
-            return new RequestBody(0, 0, 0);
+            return new RequestBody(0, 0, 0, "");
         }
     }
 }

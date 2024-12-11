@@ -20,13 +20,21 @@
 
     <div class="index">
         <div class="contentblock">
-            <canvas id='interactive'>Обновите браузер</canvas>
+            <%
+
+                String svg = (String) request.getSession().getAttribute("svg");
+            %>
+
+            <%
+                if (svg != null) {
+                    %>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="620" height="620" id="svg"><%= svg %></svg>
+            <%
+                } else {
+            %>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="620" height="620" id="svg"></svg>
+             <% } %>
             <div id="XY" class="valN"></div>
-            <!-- инпуты valX, valY, valR что-то вроде временных переменных. В них попадают либо пересчитанные и округленные
-            значения клика мышкой в канвасе, либо значения из полей выбора справа. Сделаны в виде полей ввода с аттрибутом readonly.
-            Именно их нужно использовать на сервере.
-            По идее после клика мышкой форма должна сразу отправляться, т.е. нет варианта сначала выбрать координаты
-            на канвасе, а потом изменить только один из них в форме -->
             <div class="valN"><label for="valX">X =</label><input id="valX" name="valX" readonly></div>
             <div class="valN"><label for="valY">Y =</label><input id="valY" name="valY" readonly></div>
             <div class="valN"><label for="valR">R =</label><input id="valR" name="valR" readonly></div>
@@ -67,7 +75,7 @@
                 <p>При нажатии кнопки "рассчитать" берутся текущие значения (слева внизу).</p>
             </div>
             <div class="bottomline">
-                <!-- checkR0() не дает посылать данные, если R=0 -->
+
                 <button type="button" id="b" class="num sbutton" onclick="return checkR0();">Рассчитать</button>
             </div>
             <div class ="resulttable">

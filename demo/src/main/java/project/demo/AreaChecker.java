@@ -50,13 +50,9 @@ public class AreaChecker {
         throw new Exception("Invalid value");
     }
 
-
     private boolean checkX(Dot dot) throws Exception {
-        int[] array = new int[] {-5, -4, -3, -2, -1, 0, 1, 2, 3};
-        for(int i = 0; i < array.length; i++) {
-            if(dot.getX() == array[i]) {
-                return true;
-            }
+        if( dot.getX() <= 3 && dot.getX() >= -5){
+            return true;
         }
         throw new Exception("Invalid value");
     }
