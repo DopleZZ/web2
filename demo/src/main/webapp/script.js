@@ -5,6 +5,10 @@ let minY = -3; let maxY = 3;
 let minR = 0;  let maxR = 3;
 
 
+
+
+
+
 const intSize = 620;
 
 const padding = 10;
@@ -94,6 +98,10 @@ function drawTriangle(ctx, R) {
     ctx.moveTo(axisXY, axisXY);
     ctx.fill();
 }
+
+let dots = [];
+let dots_copy = [];
+
 function drawDot(ctx, x, y) {
     ctx.fillStyle = "red"
     ctx.beginPath();
@@ -101,8 +109,19 @@ function drawDot(ctx, x, y) {
     console.log(y)
     ctx.arc(x, y, 5, 0, 2 * Math.PI);
     ctx.fill();
+    dots.push({x,y});
+    localStorage.setItem("dots", JSON.stringify(dots));
     console.log("draw dot")
 }
+
+function drawDots(){
+    let intBlock = document.getElementById("interactive");
+    let ctx = intBlock.getContext('2d');
+    dots_copy = JSON.parse(localStorage.getItem("dots")) || [];
+    dots_copy.forEach(dot => drawDot(ctx, dot.x, dot.y));
+
+}
+
 function DrawCanvas(intSize, R) {
     var intBlock = document.getElementById("interactive");
     var ctx = intBlock.getContext('2d');
@@ -235,6 +254,8 @@ function init() {
     document.getElementById("valR").value = 1;
     document.getElementById("errormessage").innerHTML = "";
     DrawCanvas(intSize, R);
+    drawDots()
+
 }
 
 function calc() {
@@ -268,9 +289,11 @@ function calc() {
                 <td>${data.y}</td>
                 <td>${data.r}</td>
                 `;
+
                 document.getElementById('tablichka').prepend(row)
             })
             .catch(
                 console.log("error while fetch")
             )
 }
+
